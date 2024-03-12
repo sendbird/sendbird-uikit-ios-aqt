@@ -23,18 +23,20 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         var nickName:String = ""
         var replyType:String = ""
         
-        for argument in CommandLine.arguments {
-            if let appIdArg = argument.split(separator: ":").first, appIdArg == "appId" {
-                appId = String(argument.split(separator: ":").last ?? "")
-            }
-            if let userIdArg = argument.split(separator: ":").first, userIdArg == "userId" {
-                userId = String(argument.split(separator: ":").last ?? "")
-            }
-            if let nickNameArg = argument.split(separator: ":").first, nickNameArg == "nickName" {
-                nickName = String(argument.split(separator: ":").last ?? "")
-            }
-            if let replyTypeArg = argument.split(separator: ":").first, replyTypeArg == "replyType" {
-                replyType = String(argument.split(separator: ":").last ?? "")
+        if let arguments = ProcessInfo.processInfo.environment as? [String: String] {
+            for (key, value) in arguments {
+                switch key {
+                    case "appId":
+                        appId = value
+                    case "userId":
+                        userId = value
+                    case "nickName":
+                        nickName = value
+                    case "replyType":
+                        replyType = value
+                    default:
+                        break
+                }
             }
         }
 
