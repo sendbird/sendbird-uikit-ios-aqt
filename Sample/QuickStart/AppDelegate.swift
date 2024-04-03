@@ -60,7 +60,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         if replyType != "" {
             if replyType == "thread" {
                 SendbirdUI.config.groupChannel.channel.replyType = .thread
-            } else if replyType == "quote" {
+            } else if replyType == "quote_reply" {
                 SendbirdUI.config.groupChannel.channel.replyType = .quoteReply
             }
         } else{
